@@ -10,11 +10,15 @@ namespace chants
     {
     private:
         string _name;
+        string _message;
         int _value;
+        bool _isOffensive;
 
     public:
-        Asset(string name, int value);
+        Asset(string name, string message, int value, bool isOffensive);
         string GetName();
+        string GetMessage();
         int GetValue();
+        bool isOffensive();
     };
 }
