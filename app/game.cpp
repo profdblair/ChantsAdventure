@@ -30,7 +30,7 @@ void AtNode(Node &viewPort)
     }
     for (Monster *monster : viewPort.GetMonsters())
     {
-        cout << "Monstter at this node: " << monster->Name << " " << monster->Health << endl;
+        // cout << "Monstter at this node: " << monster->GetName() << " " << monster->GetHealth() << endl;
     }
 
     cout << "\n";
@@ -63,7 +63,7 @@ int main()
     cout << "Hello and welcome to Chants Adventure!\n";
     vector<Node> GameMap;
 
-    Player spock("Spock");
+    Player spock("Spock", 100, 100);
 
     // build all nodes
     Node home(0, "Home");
@@ -81,19 +81,19 @@ int main()
     Asset laser("Laser", "", 500, true);
     Asset shark("Shark", "", 300, true);
 
-    Monster franky("Frankenstine", 10000);
-    Monster goblin("Goblin", 8000);
-    Monster kraken("Kraken", 12000);
+    // Monster franky("Frankenstine", 10000);
+    // Monster goblin("Goblin", 8000);
+    // Monster kraken("Kraken", 12000);
 
     // add assets to nodes
-    home.AddAsset(&hammer);
-    mountain.AddAsset(&laser);
-    ocean.AddAsset(&shark);
+    // home.AddAsset(&hammer);
+    // mountain.AddAsset(&laser);
+    // ocean.AddAsset(&shark);
 
-    // add monsters to nodes
-    home.AddMonster(&franky);
-    mountain.AddMonster(&goblin);
-    ocean.AddMonster(&kraken);
+    // // add monsters to nodes
+    // home.AddMonster(&franky);
+    // mountain.AddMonster(&goblin);
+    // ocean.AddMonster(&kraken);
 
     // connect nodes
     home.AddConnection(&ocean);

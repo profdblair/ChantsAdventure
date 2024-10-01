@@ -1,4 +1,5 @@
 #include <Combatant.hpp>
+#include <time.h>
 using namespace std;
 
 namespace chants
