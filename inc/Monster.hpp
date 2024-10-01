@@ -1,20 +1,15 @@
 #pragma once
 
 #include <string>
+#include <Combatant.hpp>
 
 using namespace std;
 
 namespace chants
 {
-    struct Monster
+    class Monster : Combatant
     {
-        string Name;
-        int Health;
-
-        Monster(string name, int health)
-        {
-            Name = name;
-            Health = health;
-        }
+    public:
+        Monster(string name, int health, int coefficient);
     };
 }

@@ -3,22 +3,19 @@
 #include <string>
 #include <vector>
 #include <Asset.hpp>
+#include <Combatant.hpp>
 
 using namespace std;
 
 namespace chants
 {
-    class Player
+    class Player : public Combatant
     {
     private:
-        string _name;
-        int _health;
         vector<Asset> _assets;
 
     public:
-        Player(string name);
-        int GetHealth();
-        void ChangeHealth(int value);
+        Player(string name, int health, int coefficient);
         void AddAsset(Asset asset);
         int GetTotalAssetValue();
     };

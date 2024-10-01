@@ -3,19 +3,8 @@
 namespace chants
 {
 
-    Player::Player(string name)
+    Player::Player(string name, int health, int coefficient) : Combatant(name, health, coefficient)
     {
-        _name = name;
-    }
-
-    int Player::GetHealth()
-    {
-        return _health;
-    }
-
-    void Player::ChangeHealth(int value)
-    {
-        _health += value;
     }
 
     void Player::AddAsset(Asset asset)
@@ -32,5 +21,4 @@ namespace chants
         }
         return val;
     }
-
 }
