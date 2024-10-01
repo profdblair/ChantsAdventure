@@ -28,6 +28,12 @@ void AtNode(Node viewPort)
     {
         cout << "Asset at this node: " << asset->GetName() << " " << asset->GetValue() << endl;
     }
+    for (Monster *monster : viewPort.GetMonsters())
+    {
+        cout << "Monstter at this node: " << monster->Name << " " << monster->Health << endl;
+    }
+
+    cout << "\n";
 }
 
 int FindNode(string loc, vector<Node> *gameMap)
@@ -56,6 +62,9 @@ int main()
 {
     cout << "Hello and welcome to Chants Adventure!\n";
     vector<Node> GameMap;
+
+    Player spock("Spock");
+
     // build all nodes
     Node home(0, "Home");
     Node mountain(1, "Mountain");
@@ -66,10 +75,19 @@ int main()
     Asset laser("Laser", 500);
     Asset shark("Shark", 300);
 
+    Monster franky("Frankenstine", 10000);
+    Monster goblin("Goblin", 8000);
+    Monster kraken("Kraken", 12000);
+
     // add assets to nodes
     home.AddAsset(&hammer);
     mountain.AddAsset(&laser);
     ocean.AddAsset(&shark);
+
+    // add monsters to nodes
+    home.AddMonster(&franky);
+    mountain.AddMonster(&goblin);
+    ocean.AddMonster(&kraken);
 
     // connect nodes
     home.AddConnection(&mountain);
@@ -97,8 +115,13 @@ int main()
         cin >> input;
         if (input == "x")
             break;
+        if (input == "a")
+        {
+            // Battle(spock, GameMap[nodePointer].monsters);
+        }
         int dir = FindNode(input, &GameMap);
         if (dir >= 0)
             nodePointer = dir;
+        cout << endl;
     }
 }
