@@ -17,7 +17,7 @@ bool isNumber(const string &str)
     return true;
 }
 
-void AtNode(Node viewPort)
+void AtNode(Node &viewPort)
 {
     cout << "At " << viewPort.GetName() + "\n";
     for (Node *node : viewPort.GetConnections())
@@ -60,11 +60,17 @@ int main()
     Node home(0, "Home");
     Node mountain(1, "Mountain");
     Node ocean(2, "Ocean");
+    Node spaceship(3, "Space Ship");
+    Node city(4, "Metropolis");
+    Node boat(5, "SS Minnow");
+    Node cave(6, "Dark Cave");
+    Node island(7, "Island");
+    Node moon(8, "Moon");
 
     // define all assets
-    Asset hammer("Hammer", 100);
-    Asset laser("Laser", 500);
-    Asset shark("Shark", 300);
+    Asset hammer("Hammer", "", 100, true);
+    Asset laser("Laser", "", 500, true);
+    Asset shark("Shark", "", 300, true);
 
     // add assets to nodes
     home.AddAsset(&hammer);
@@ -72,19 +78,47 @@ int main()
     ocean.AddAsset(&shark);
 
     // connect nodes
-    home.AddConnection(&mountain);
-    mountain.AddConnection(&home);
-
     home.AddConnection(&ocean);
-    ocean.AddConnection(&home);
+    home.AddConnection(&city);
+    home.AddConnection(&spaceship);
 
-    ocean.AddConnection(&mountain);
-    mountain.AddConnection(&ocean);
+    ocean.AddConnection(&home);
+    ocean.AddConnection(&boat);
+
+    boat.AddConnection(&ocean);
+    boat.AddConnection(&island);
+
+    island.AddConnection(&boat);
+    island.AddConnection(&cave);
+
+    cave.AddConnection(&island);
+    cave.AddConnection(&moon);
+    cave.AddConnection(&mountain);
+    cave.AddConnection(&city);
+
+    mountain.AddConnection(&cave);
+    mountain.AddConnection(&city);
+
+    city.AddConnection(&mountain);
+    city.AddConnection(&cave);
+    city.AddConnection(&home);
+
+    spaceship.AddConnection(&home);
+    spaceship.AddConnection(&moon);
+
+    moon.AddConnection(&spaceship);
+    moon.AddConnection(&cave);
 
     // build map
     GameMap.push_back(home);
-    GameMap.push_back(mountain);
     GameMap.push_back(ocean);
+    GameMap.push_back(boat);
+    GameMap.push_back(island);
+    GameMap.push_back(cave);
+    GameMap.push_back(mountain);
+    GameMap.push_back(city);
+    GameMap.push_back(spaceship);
+    GameMap.push_back(moon);
 
     bool runningGame = true;
     int nodePointer = 0;
@@ -92,6 +126,7 @@ int main()
     while (runningGame)
     {
         // show current node info
+        cout << "NODEPTR: " << nodePointer << "\n";
         AtNode(GameMap[nodePointer]);
         cout << "To do? e(x)it: ";
         cin >> input;
