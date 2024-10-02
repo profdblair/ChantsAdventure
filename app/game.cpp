@@ -51,7 +51,7 @@ int FindNode(string loc, vector<Node> *gameMap)
     return -1;
 }
 
-int Battle(Player player)
+int Battle(Player player, Monster monster)
 {
     srand(time(nullptr));
 
