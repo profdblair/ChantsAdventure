@@ -7,19 +7,19 @@ Chanticleer's Adventure Game is a single player text-based adventure game. The o
 ## Game parameters are:
 
 -	Player starts with health worth 12,500 points
--	Player will have a certain amount of time to find the Bird of Happiness
+-	Player will have a certain amount of time to find the Bird of Knowledge
 -	Player gain or lose points depending on the events that happen during the game
 -	Player loses the game if she runs out of points or time
 
 ## Game objects of interest:
 
--	Bird of Happiness (BOH) – Rescue to win the game 
+-	Bird of Knowledge (BOK) – Rescue to win the game 
 -	Hobgoblins – run the city of Benightedness
--	Player – Version 1 is a single player game
--	Benightedness - city
+-	Player – Chants Adventure is a single player game
+-	Benightedness - world
 -	Path – all paths are bi-directional
 -	Location – points on the map
--	Directions – Eight total [E, W, N, S]
+-	Directions - node number or name
 -	Objects – help or hurt the quest in finding BOH
 -	Specters – hired by Hobgoblins to do their dirty work such as stealing health points
 
@@ -27,13 +27,6 @@ Chanticleer's Adventure Game is a single player text-based adventure game. The o
 
 -	Walk, Take, Drop, Examine, Read, Push, Pull, Kick, Spray, Sit, Stand
 -	Inventory (used to show list of items a player holds)
-
-## Possible directions (can be either spelled out or use abbreviation)
-
--	East E
--	West W
--	North N
--	South S
 
 ## Game Objects
 
@@ -65,7 +58,8 @@ Chanticleer's Adventure Game is a single player text-based adventure game. The o
 -	Game object design and implementation techniques
 -	Tools
     -	UMLet
-    -   TDD (unit testing)
+    -   TDD (unit testing using gtest)
+    -   Doxygen
 
 
 In the tradition of the original Zork text based adventure game, this course teaches good design methodologies for building text based action adventure game engine designs. It concentrates on object oriented strategies and using agile software development methods. By the end of class the student will be familiar with:
