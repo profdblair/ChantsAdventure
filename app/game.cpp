@@ -69,78 +69,72 @@ int main()
     Node home(0, "Home");
     Node mountain(1, "Mountain");
     Node ocean(2, "Ocean");
-    Node spaceship(3, "Space Ship");
-    Node city(4, "Metropolis");
-    Node boat(5, "SS Minnow");
-    Node cave(6, "Dark Cave");
-    Node island(7, "Island");
-    Node moon(8, "Moon");
-
-    // define all assets
-    Asset hammer("Hammer", "", 100, true);
-    Asset laser("Laser", "", 500, true);
-    Asset shark("Shark", "", 300, true);
-
-    // Monster franky("Frankenstine", 10000);
-    // Monster goblin("Goblin", 8000);
-    // Monster kraken("Kraken", 12000);
-
-    // add assets to nodes
-    // home.AddAsset(&hammer);
-    // mountain.AddAsset(&laser);
-    // ocean.AddAsset(&shark);
-
-    // // add monsters to nodes
-    // home.AddMonster(&franky);
-    // mountain.AddMonster(&goblin);
-    // ocean.AddMonster(&kraken);
+    Node city(3, "City");
+    Node island(4, "Island");
+    Node cave(5, "Cave");
+    Node beach(6, "Beach");
+    Node quicksand(7, "Quick Sand");
+    Node hut(8, "Hut");
 
     // connect nodes
-    home.AddConnection(&ocean);
+    home.AddConnection(&mountain);
     home.AddConnection(&city);
-    home.AddConnection(&spaceship);
 
-    ocean.AddConnection(&home);
-    ocean.AddConnection(&boat);
-
-    boat.AddConnection(&ocean);
-    boat.AddConnection(&island);
-
-    island.AddConnection(&boat);
-    island.AddConnection(&cave);
-
-    cave.AddConnection(&island);
-    cave.AddConnection(&moon);
-    cave.AddConnection(&mountain);
-    cave.AddConnection(&city);
-
-    mountain.AddConnection(&cave);
+    mountain.AddConnection(&home);
+    mountain.AddConnection(&ocean);
     mountain.AddConnection(&city);
 
-    city.AddConnection(&mountain);
-    city.AddConnection(&cave);
+    ocean.AddConnection(&mountain);
+    ocean.AddConnection(&city);
+    ocean.AddConnection(&island);
+
     city.AddConnection(&home);
+    city.AddConnection(&mountain);
+    city.AddConnection(&ocean);
 
-    spaceship.AddConnection(&home);
-    spaceship.AddConnection(&moon);
+    island.AddConnection(&ocean);
+    island.AddConnection(&cave);
+    island.AddConnection(&beach);
+    island.AddConnection(&quicksand);
+    island.AddConnection(&hut);
 
-    moon.AddConnection(&spaceship);
-    moon.AddConnection(&cave);
+    cave.AddConnection(&home); // one way
+    cave.AddConnection(&beach);
+    cave.AddConnection(&island);
 
-    // build map
+    beach.AddConnection(&cave);
+    beach.AddConnection(&island);
+
+    hut.AddConnection(&island);
+    hut.AddConnection(&quicksand);
+
+    quicksand.AddConnection(&hut);
+    quicksand.AddConnection(&island);
+
+    // build map in same order as Id above
     GameMap.push_back(home);
     GameMap.push_back(ocean);
     GameMap.push_back(boat);
     GameMap.push_back(island);
     GameMap.push_back(cave);
     GameMap.push_back(mountain);
+    GameMap.push_back(ocean);
     GameMap.push_back(city);
-    GameMap.push_back(spaceship);
-    GameMap.push_back(moon);
+    GameMap.push_back(island);
+    GameMap.push_back(cave);
+    GameMap.push_back(beach);
+    GameMap.push_back(quicksand);
+    GameMap.push_back(hut);
 
+    // add assets
+
+    // add monsters
+
+    // get ready to play game below
     bool runningGame = true;
-    int nodePointer = 0;
+    int nodePointer = 0; // start at home
     string input;
+
     while (runningGame)
     {
         // show current node info
@@ -150,10 +144,7 @@ int main()
         cin >> input;
         if (input == "x")
             break;
-        if (input == "a")
-        {
-            // Battle(spock, GameMap[nodePointer].monsters);
-        }
+
         int dir = FindNode(input, &GameMap);
         if (dir >= 0)
             nodePointer = dir;
