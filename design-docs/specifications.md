@@ -30,7 +30,7 @@ Chanticleer's Adventure Game is a single player text-based adventure game. The o
 
 ## Game Objects
 
-	Game objects all have a value in Points along with any special functions they might hold, such as giving the player extra powers or gifts (points). Also, not all game objects can be picked up by the player. Some may offer only clues; for example, on how to find the BOH. Some objects can be taken by the player but other may not be picked up. The player may pick up an object and drop it at another location in the game.
+	Game objects all have a value in points. Also, not all game objects can be picked up by the player. Some may offer only clues; for example, on how to find the BOK. Some objects can be taken by the player but other may not be picked up. The player may pick up an object and drop it at another location in the game.
 
 ## Possible list of objects;
 -	Flashlight

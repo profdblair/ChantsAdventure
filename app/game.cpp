@@ -111,7 +111,7 @@ int main()
     quicksand.AddConnection(&hut);
     quicksand.AddConnection(&island);
 
-    // build map in same order as Id above
+    // build map in same order as Node Ids above
     GameMap.push_back(home);
     GameMap.push_back(mountain);
     GameMap.push_back(ocean);
