@@ -113,10 +113,6 @@ int main()
 
     // build map in same order as Id above
     GameMap.push_back(home);
-    GameMap.push_back(ocean);
-    GameMap.push_back(boat);
-    GameMap.push_back(island);
-    GameMap.push_back(cave);
     GameMap.push_back(mountain);
     GameMap.push_back(ocean);
     GameMap.push_back(city);
@@ -138,7 +134,6 @@ int main()
     while (runningGame)
     {
         // show current node info
-        cout << "NODEPTR: " << nodePointer << "\n";
         AtNode(GameMap[nodePointer]);
         cout << "To do? e(x)it: ";
         cin >> input;
