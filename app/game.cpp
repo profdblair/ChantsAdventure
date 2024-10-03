@@ -31,6 +31,7 @@ void AtNode(Node &viewPort)
     for (Monster *monster : viewPort.GetMonsters())
     {
         // cout << "Monstter at this node: " << monster->GetName() << " " << monster->GetHealth() << endl;
+        // cout << "Monstter at this node: " << monster->GetName() << " " << monster->GetHealth() << endl;
     }
 
     cout << "\n";
@@ -51,24 +52,34 @@ int FindNode(string loc, vector<Node> *gameMap)
     return -1;
 }
 
-int Battle(Player player)
+int Battle(Player player, Monster monster)
 {
     srand(time(nullptr));
 
     return player.GetHealth();
 }
 
+//
+// All this will be moved to gamemap out of main
+//
 int main()
 {
     cout << "Hello and welcome to Chants Adventure!\n";
     vector<Node> GameMap;
 
+    Player spock("Spock", 100, 100);
     Player spock("Spock", 10000, 1000);
 
     // build all nodes
     Node home(0, "Home");
     Node mountain(1, "Mountain");
     Node ocean(2, "Ocean");
+    Node city(3, "City");
+    Node island(4, "Island");
+    Node cave(5, "Cave");
+    Node beach(6, "Beach");
+    Node quicksand(7, "Quick Sand");
+    Node hut(8, "Hut");
     Node spaceship(3, "Space Ship");
     Node city(4, "Metropolis");
     Node boat(5, "SS Minnow");
@@ -96,50 +107,85 @@ int main()
     // ocean.AddMonster(&kraken);
 
     // connect nodes
-    home.AddConnection(&ocean);
+    home.AddConnection(&mountain);
     home.AddConnection(&city);
-    home.AddConnection(&spaceship);
 
-    ocean.AddConnection(&home);
-    ocean.AddConnection(&boat);
-
-    boat.AddConnection(&ocean);
-    boat.AddConnection(&island);
-
-    island.AddConnection(&boat);
-    island.AddConnection(&cave);
-
-    cave.AddConnection(&island);
-    cave.AddConnection(&moon);
-    cave.AddConnection(&mountain);
-    cave.AddConnection(&city);
-
-    mountain.AddConnection(&cave);
+    mountain.AddConnection(&home);
+    mountain.AddConnection(&ocean);
     mountain.AddConnection(&city);
 
-    city.AddConnection(&mountain);
-    city.AddConnection(&cave);
+    ocean.AddConnection(&mountain);
+    ocean.AddConnection(&city);
+    ocean.AddConnection(&island);
+
     city.AddConnection(&home);
+    city.AddConnection(&mountain);
+    city.AddConnection(&ocean);
 
-    spaceship.AddConnection(&home);
-    spaceship.AddConnection(&moon);
+    island.AddConnection(&ocean);
+    island.AddConnection(&cave);
+    island.AddConnection(&beach);
+    island.AddConnection(&quicksand);
+    island.AddConnection(&hut);
 
-    moon.AddConnection(&spaceship);
-    moon.AddConnection(&cave);
+    cave.AddConnection(&home); // one way
+    cave.AddConnection(&beach);
+    cave.AddConnection(&island);
 
-    // build map
+    beach.AddConnection(&cave);
+    beach.AddConnection(&island);
+
+    hut.AddConnection(&island);
+    hut.AddConnection(&quicksand);
+
+    quicksand.AddConnection(&hut);
+    quicksand.AddConnection(&island);
+
+    // build map in same order as Node Ids above.
+    // The index of each node must match it's id.
     GameMap.push_back(home);
+    GameMap.push_back(mountain);
     GameMap.push_back(ocean);
-    GameMap.push_back(boat);
+    GameMap.push_back(city);
     GameMap.push_back(island);
     GameMap.push_back(cave);
-    GameMap.push_back(mountain);
-    GameMap.push_back(city);
-    GameMap.push_back(spaceship);
-    GameMap.push_back(moon);
+    GameMap.push_back(beach);
+    GameMap.push_back(quicksand);
+    GameMap.push_back(hut);
 
+    // ######## add assets below ########
+    // Flashlight
+    // Atomic Map
+    // Compass
+    // Screwdriver
+    // Hammer
+    // Polyglot (translator)
+    // Treasure
+    // Hobgoblin Shield
+    // Garden Hose
+    // Chest
+    // Sign
+    // Rabbit Cage
+    // Paper Bag
+    // Captain’s Chair
+    // Purple Haze
+    // Drinking Glass
+    // Rusty Nail
+
+    // ######## add monsters below ########
+    // Hobgoblin
+    // Specter
+    // Frankenstein
+    // Vampire
+    // Zombie
+    // Warewolf
+    // Ghoul
+    // Troll
+    // Phantom
+
+    // get ready to play game below
     bool runningGame = true;
-    int nodePointer = 0;
+    int nodePointer = 0; // start at home
     string input;
 
     while (runningGame)
