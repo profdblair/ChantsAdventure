@@ -58,6 +58,9 @@ int Battle(Player player, Monster monster)
     return player.GetHealth();
 }
 
+//
+// All this will be moved to gamemap out of main
+//
 int main()
 {
     cout << "Hello and welcome to Chants Adventure!\n";
