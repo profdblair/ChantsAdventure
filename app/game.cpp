@@ -141,22 +141,24 @@ int main()
     bool runningGame = true;
     int nodePointer = 0;
     string input;
+
     while (runningGame)
     {
         // show current node info
-        cout << "NODEPTR: " << nodePointer << "\n";
+        cout << "NodePtr: " << nodePointer << endl;
         AtNode(GameMap[nodePointer]);
+
         cout << "To do? e(x)it: ";
         cin >> input;
+
         if (input == "x")
             break;
-        if (input == "a")
-        {
-            // Battle(spock, GameMap[nodePointer].monsters);
-        }
+
         int dir = FindNode(input, &GameMap);
+        cout << "Dir: " << dir << endl;
         if (dir >= 0)
             nodePointer = dir;
+
         cout << endl;
     }
 }
