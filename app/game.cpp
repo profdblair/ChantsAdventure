@@ -67,39 +67,33 @@ int main()
     cout << "Hello and welcome to Chants Adventure!\n";
     vector<Node> GameMap;
 
-    Player spock("Spock", 100, 100);
-    Player spock("Spock", 10000, 1000);
+    // Player spock("Spock", 100, 100);
+    // Player spock("Spock", 10000, 1000);
 
     // build all nodes
     Node home(0, "Home");
     Node mountain(1, "Mountain");
-    Node ocean(2, "Ocean");
-    Node city(3, "City");
+    Node city(2, "City");
+    Node ocean(3, "Ocean");
     Node island(4, "Island");
-    Node cave(5, "Cave");
-    Node beach(6, "Beach");
-    Node quicksand(7, "Quick Sand");
-    Node hut(8, "Hut");
-    Node spaceship(3, "Space Ship");
-    Node city(4, "Metropolis");
-    Node boat(5, "SS Minnow");
-    Node cave(6, "Dark Cave");
-    Node island(7, "Island");
-    Node moon(8, "Moon");
+    Node hut(5, "Hut");
+    Node quicksand(6, "Quick Sand");
+    Node cave(7, "Cave");
+    Node beach(8, "Beach");
 
     // define all assets
-    Asset hammer("Hammer", "", 100, true);
-    Asset laser("Laser", "", 500, true);
-    Asset shark("Shark", "", 300, true);
+    // Asset hammer("Hammer", "", 100, true);
+    // Asset laser("Laser", "", 500, true);
+    // Asset shark("Shark", "", 300, true);
 
     // Monster franky("Frankenstine", 10000);
     // Monster goblin("Goblin", 8000);
     // Monster kraken("Kraken", 12000);
 
     // add assets to nodes
-    home.AddAsset(&hammer);
-    mountain.AddAsset(&laser);
-    ocean.AddAsset(&shark);
+    // home.AddAsset(&hammer);
+    // mountain.AddAsset(&laser);
+    // ocean.AddAsset(&shark);
 
     // add monsters to nodes
     // home.AddMonster(&franky);
@@ -145,13 +139,13 @@ int main()
     // The index of each node must match it's id.
     GameMap.push_back(home);
     GameMap.push_back(mountain);
-    GameMap.push_back(ocean);
     GameMap.push_back(city);
+    GameMap.push_back(ocean);
     GameMap.push_back(island);
+    GameMap.push_back(hut);
+    GameMap.push_back(quicksand);
     GameMap.push_back(cave);
     GameMap.push_back(beach);
-    GameMap.push_back(quicksand);
-    GameMap.push_back(hut);
 
     // ######## add assets below ########
     // Flashlight
