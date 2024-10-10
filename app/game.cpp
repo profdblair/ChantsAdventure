@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <Node.hpp>
 #include <Asset.hpp>
 #include <Player.hpp>
@@ -24,7 +25,7 @@ void AtNode(Node &viewPort)
     // Output contents of this Node
     cout << "Location: " << viewPort.GetName() + "\n\n";
     cout << viewPort.Description << endl
-         << "There are paths leading towards " << endl;
+         << "There are paths here ..." << endl;
     for (Node *node : viewPort.GetConnections())
     {
         cout << node->GetId() << " " << node->GetName() << endl;
@@ -33,13 +34,13 @@ void AtNode(Node &viewPort)
     // Show all assets in Node
     for (Asset *asset : viewPort.GetAssets())
     {
-        cout << "Asset at this node: " << asset->GetName() << " " << asset->GetValue() << endl;
+        cout << "Asset at this node: " << asset->GetName() << " " << asset->GetMessage() << " " << asset->GetValue() << endl;
     }
 
     // Show any monsters at this Node
     for (Monster *monster : viewPort.GetMonsters())
     {
-        cout << "Monstter at this node: " << monster->GetName() << " " << monster->GetHealth() << endl;
+        cout << "Monster at this node: " << monster->GetName() << " " << monster->GetHealth() << endl;
     }
 
     cout << "\n";
@@ -65,6 +66,26 @@ int Battle(Player player, Monster monster)
     srand(time(nullptr));
 
     return player.GetHealth();
+}
+
+std::string getLastWord(const std::string &str)
+{
+    // Trim trailing spaces
+    std::string trimmed = str;
+    trimmed.erase(trimmed.find_last_not_of(' ') + 1);
+
+    // Find the position of the last space
+    size_t pos = trimmed.find_last_of(' ');
+
+    // Extract the last word
+    if (pos == std::string::npos)
+    {
+        return trimmed; // No spaces found, return the whole string
+    }
+    else
+    {
+        return trimmed.substr(pos + 1);
+    }
 }
 
 //
@@ -140,7 +161,7 @@ int main()
     quicksand.AddConnection(&island);
 
     // build map in same order as Node Ids above.
-    // The index of each node must match it's id.
+    // The index of each node in the vector must match it's id.
     GameMap.push_back(home);
     GameMap.push_back(mountain);
     GameMap.push_back(city);
@@ -150,6 +171,54 @@ int main()
     GameMap.push_back(quicksand);
     GameMap.push_back(cave);
     GameMap.push_back(beach);
+
+    // build assets
+    //
+    Asset flashlight("Flashlight", "A flashlight can be very useful, especially in dark places.", 50, false);
+    Asset hammer("Hammer", "A hammer to help defend yourself", 150, true);
+    Asset purplehaze("Purple haze", "A spell that renders opponents helpless.", 250, true);
+    Asset rustynail("Rusty nail", "Infect an opponent with tetanus.", 100, true);
+    Asset drinkingwater("Drinking water", "This may keep you from going thirsty.", 50, false);
+
+    // randomly add assets to nodes
+    srand(time(nullptr)); // seed the random number generator
+    int randNode = rand() % 9;
+    GameMap[randNode].AddAsset(&flashlight);
+
+    randNode = rand() % 9;
+    GameMap[randNode].AddAsset(&hammer);
+
+    randNode = rand() % 9;
+    GameMap[randNode].AddAsset(&purplehaze);
+
+    randNode = rand() % 9;
+    GameMap[randNode].AddAsset(&rustynail);
+
+    randNode = rand() % 9;
+    GameMap[randNode].AddAsset(&drinkingwater);
+
+    // build monsters
+    // randomly add monsters to nodes
+    Monster ghoul("ghoul", 5000, 100);
+    Monster goblin("goblin", 6000, 100);
+    Monster kraken("kraken", 7000, 100);
+    Monster demon("demon", 5000, 100);
+    Monster griffin("griffin", 4000, 100);
+
+    randNode = rand() % 5;
+    GameMap[randNode].AddMonster(&ghoul);
+
+    randNode = rand() % 5;
+    GameMap[randNode].AddMonster(&goblin);
+
+    randNode = rand() % 5;
+    GameMap[randNode].AddMonster(&kraken);
+
+    randNode = rand() % 5;
+    GameMap[randNode].AddMonster(&demon);
+
+    randNode = rand() % 5;
+    GameMap[randNode].AddMonster(&griffin);
 
     // get ready to play game below
     int nodePointer = 0; // start at home
@@ -162,7 +231,7 @@ int main()
         AtNode(GameMap[nodePointer]);
 
         cout << "Go to node? e(x)it: ";
-        cin >> input;
+        getline(cin, input);
 
         // exit app?
         if (input == "x")
@@ -187,6 +256,24 @@ int main()
         if (validConnection)
         {
             dir = FindNode(input, &GameMap);
+        }
+
+        // if player wants to take an asset (t hammer)
+        if (input.length() > 1 && input[0] == 't')
+        {
+            string lastWord = getLastWord(input);
+        }
+
+        // if player wants to attack a monster (a kraken)
+        if (input.length() > 1 && input[0] == 'a')
+        {
+            string lastWord = getLastWord(input);
+        }
+
+        // if player wants to drop an asset (d hammer)
+        if (input.length() > 1 && input[0] == 'd')
+        {
+            string lastWord = getLastWord(input);
         }
 
         cout << "Dir: " << dir << endl;

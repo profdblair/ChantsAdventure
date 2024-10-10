@@ -8,6 +8,7 @@ namespace chants
         _message = message;
         _value = value;
         _isOffensive = isOffensive;
+        hasBeenUsed = false;
     }
 
     string Asset::GetName()

@@ -10,6 +10,7 @@
  */
 #include <gtest/gtest.h>
 #include <vector>
+
 #include <Node.hpp>
 #include <GameMap.hpp>
 #include <Player.hpp>

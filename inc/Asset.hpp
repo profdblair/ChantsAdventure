@@ -15,6 +15,7 @@ namespace chants
         bool _isOffensive;
 
     public:
+        bool hasBeenUsed;
         Asset(string name, string message, int value, bool isOffensive);
         string GetName();
         string GetMessage();
