@@ -3,7 +3,7 @@
 namespace chants
 {
 
-    Player::Player(string name, int health, int coefficient) : Combatant(name, health, coefficient)
+    Player::Player(string name, int health, int fightCoefficient) : Combatant(name, health, fightCoefficient)
     {
     }
 

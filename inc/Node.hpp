@@ -20,7 +20,7 @@ namespace chants
         vector<Monster *> _monsters;
 
     public:
-        string Message;
+        string Description;
 
         Node(int id, string name);
         int GetId();

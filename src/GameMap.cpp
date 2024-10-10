@@ -2,8 +2,13 @@
 
 namespace chants
 {
+    vector<Node> _gameMap;
+
     GameMap::GameMap()
     {
+        buildMapNodes();
+
+        // Possible assets:
         // Flashlight
         // Atomic Map
         // Compass
@@ -21,5 +26,13 @@ namespace chants
         // Purple Haze
         // Drinking Glass
         // Rusty Nail
+
+        // Possible monsters:
+        //
     }
+
+    void GameMap::buildMapNodes()
+    {
+    }
+
 }

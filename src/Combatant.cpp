@@ -4,11 +4,11 @@ using namespace std;
 
 namespace chants
 {
-    Combatant::Combatant(string name, int health, int coefficient)
+    Combatant::Combatant(string name, int health, int fightCoefficient)
     {
         _name = name;
         _health = health;
-        _fightCoefficient = coefficient;
+        _fightCoefficient = fightCoefficient;
     }
 
     string Combatant::GetName()

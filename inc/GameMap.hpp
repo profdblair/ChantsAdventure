@@ -10,6 +10,8 @@ namespace chants
     private:
         vector<Node> locations;
 
+        void buildMapNodes();
+
     public:
         GameMap();
     };

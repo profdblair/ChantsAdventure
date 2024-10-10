@@ -15,7 +15,7 @@ namespace chants
         vector<Asset> _assets;
 
     public:
-        Player(string name, int health, int coefficient);
+        Player(string name, int health, int fightCoefficient);
         void AddAsset(Asset asset);
         int GetTotalAssetValue();
     };

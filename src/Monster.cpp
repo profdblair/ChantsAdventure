@@ -2,7 +2,7 @@
 
 namespace chants
 {
-    Monster::Monster(string name, int health, int coefficient) : Combatant(name, health, coefficient)
+    Monster::Monster(string name, int health, int fightCoefficient) : Combatant(name, health, fightCoefficient)
     {
     }
 }
