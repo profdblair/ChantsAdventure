@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <Node.hpp>
 
@@ -5,7 +7,7 @@ using namespace std;
 
 namespace chants
 {
-    class GameMap
+    class AdventureGameMap
     {
     private:
         vector<Node> locations;
@@ -13,6 +15,7 @@ namespace chants
         void buildMapNodes();
 
     public:
-        GameMap();
+        AdventureGameMap();
+        vector<Node> GetLocations();
     };
 }

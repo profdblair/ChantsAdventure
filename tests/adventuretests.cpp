@@ -12,7 +12,7 @@
 #include <vector>
 
 #include <Node.hpp>
-#include <GameMap.hpp>
+#include <AdventureGameMap.hpp>
 #include <Player.hpp>
 #include <Combatant.hpp>
 #include <Monster.hpp>

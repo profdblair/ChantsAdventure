@@ -4,6 +4,7 @@
 #include <Asset.hpp>
 #include <Player.hpp>
 #include <Monster.hpp>
+#include <AdventureGameMap.hpp>
 
 using namespace std;
 using namespace chants;
@@ -93,9 +94,9 @@ std::string getLastWord(const std::string &str)
 //
 int main()
 {
-    cout << "Hello and welcome to Chants Adventure!\n";
-    cout << "[Enter the node number to move to that node]\n";
-    vector<Node> GameMap;
+    // AdventureGameMap _gameMap;
+
+    vector<Node> gameMap;
 
     // build all nodes
     Node home(0, "Home");
@@ -162,15 +163,15 @@ int main()
 
     // build map in same order as Node Ids above.
     // The index of each node in the vector must match it's id.
-    GameMap.push_back(home);
-    GameMap.push_back(mountain);
-    GameMap.push_back(city);
-    GameMap.push_back(ocean);
-    GameMap.push_back(island);
-    GameMap.push_back(hut);
-    GameMap.push_back(quicksand);
-    GameMap.push_back(cave);
-    GameMap.push_back(beach);
+    gameMap.push_back(home);
+    gameMap.push_back(mountain);
+    gameMap.push_back(city);
+    gameMap.push_back(ocean);
+    gameMap.push_back(island);
+    gameMap.push_back(hut);
+    gameMap.push_back(quicksand);
+    gameMap.push_back(cave);
+    gameMap.push_back(beach);
 
     // build assets
     //
@@ -181,21 +182,23 @@ int main()
     Asset drinkingwater("Drinking water", "This may keep you from going thirsty.", 50, false);
 
     // randomly add assets to nodes
+    int numOfNodes = gameMap.size();
+
     srand(time(nullptr)); // seed the random number generator
-    int randNode = rand() % 9;
-    GameMap[randNode].AddAsset(&flashlight);
+    int randNode = rand() % numOfNodes;
+    gameMap[randNode].AddAsset(&flashlight);
 
-    randNode = rand() % 9;
-    GameMap[randNode].AddAsset(&hammer);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddAsset(&hammer);
 
-    randNode = rand() % 9;
-    GameMap[randNode].AddAsset(&purplehaze);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddAsset(&purplehaze);
 
-    randNode = rand() % 9;
-    GameMap[randNode].AddAsset(&rustynail);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddAsset(&rustynail);
 
-    randNode = rand() % 9;
-    GameMap[randNode].AddAsset(&drinkingwater);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddAsset(&drinkingwater);
 
     // build monsters
     // randomly add monsters to nodes
@@ -205,30 +208,30 @@ int main()
     Monster demon("demon", 5000, 100);
     Monster griffin("griffin", 4000, 100);
 
-    randNode = rand() % 5;
-    GameMap[randNode].AddMonster(&ghoul);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddMonster(&ghoul);
 
-    randNode = rand() % 5;
-    GameMap[randNode].AddMonster(&goblin);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddMonster(&goblin);
 
-    randNode = rand() % 5;
-    GameMap[randNode].AddMonster(&kraken);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddMonster(&kraken);
 
-    randNode = rand() % 5;
-    GameMap[randNode].AddMonster(&demon);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddMonster(&demon);
 
-    randNode = rand() % 5;
-    GameMap[randNode].AddMonster(&griffin);
+    randNode = rand() % numOfNodes;
+    gameMap[randNode].AddMonster(&griffin);
 
     // get ready to play game below
     int nodePointer = 0; // start at home
     string input;
 
-    // game loop
+    // +++++++++ game loop ++++++++++
     while (true)
     {
         // show current node info
-        AtNode(GameMap[nodePointer]);
+        AtNode(gameMap[nodePointer]);
 
         cout << "Go to node? e(x)it: ";
         getline(cin, input);
@@ -244,7 +247,7 @@ int main()
         }
 
         bool validConnection = false;
-        for (Node *node : GameMap[nodePointer].GetConnections())
+        for (Node *node : gameMap[nodePointer].GetConnections())
         {
             if (node->GetId() == nodeAddr)
             {
@@ -255,7 +258,7 @@ int main()
         int dir = -1;
         if (validConnection)
         {
-            dir = FindNode(input, &GameMap);
+            dir = FindNode(input, &gameMap);
         }
 
         // if player wants to take an asset (t hammer)
@@ -284,4 +287,5 @@ int main()
 
         cout << endl;
     }
+    return 0;
 }
