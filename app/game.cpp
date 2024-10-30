@@ -279,6 +279,12 @@ int main()
             string lastWord = getLastWord(input);
         }
 
+        // if player wants to inspect an asset (i hammer)
+        if (input.length() > 1 && input[0] == 'i')
+        {
+            string lastWord = getLastWord(input);
+        }
+
         cout << "Dir: " << dir << endl;
         if (dir >= 0)
             nodePointer = dir;
