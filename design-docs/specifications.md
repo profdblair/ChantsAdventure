@@ -65,7 +65,10 @@ Chanticleer's Adventure Game is a single player text-based adventure game. The o
 In the tradition of the original Zork text based adventure game, this course teaches good design methodologies for building text based action adventure game engine designs. It concentrates on object oriented strategies and using agile software development methods. By the end of class the student will be familiar with:
 -	UML
 -	C++
+-   CMake
 -	Object Oriented Design (OOD) and object communication
 -	Design patterns
 -	Source control
 -	Unit testing procedures
+-   Documentation
+-   Markdown
